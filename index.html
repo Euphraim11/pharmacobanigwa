@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pharmaco Banigwa — Home</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  
+<header class="header container">
+  <div class="brand">Pharmaco Banigwa</div>
+  <nav class="nav">
+    <a href="/index.html">Home</a>
+    <a href="/blog/index.html">Blog</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+    <span class="lang">EN | FR</span>
+  </nav>
+</header>
+
+  <main class="container">
+    <section class="hero card">
+      <h1>Pharmaco Banigwa</h1>
+      <p class="muted">Health and Medical tutorials — clean, trusted, and easy to follow.</p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Latest Posts</h2>
+      <ul class="post-list" id="posts-list">
+        <li><a href="/blog/example-post.html">Understanding Omeprazole — Pharmacology 101</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Support the Project</h2>
+      <p>If you find this content useful, consider supporting us.</p>
+      <a class="donate" href="https://paypal.me/YourUsername" target="_blank" rel="noreferrer">Donate via PayPal</a>
+    </section>
+
+    <section class="ad card">
+      <div id="adsense-placeholder">AdSense placeholder — paste your ad code here.</div>
+    </section>
+
+  </main>
+
+  
+<footer class="footer container">
+  <div>© 2025 Pharmaco Banigwa</div>
+  <div class="social">
+    <a href="https://www.youtube.com/@PharmacoBanigwa" target="_blank" rel="noreferrer">YouTube</a>
+    <a href="https://www.instagram.com/pharmacobanigwa?igsh=MWtmcW54c2dha2ZuYw==" target="_blank" rel="noreferrer">Instagram</a>
+    <a href="https://www.facebook.com/share/18VPAD1EbP/" target="_blank" rel="noreferrer">Facebook</a>
+  </div>
+</footer>
+
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // Fetch notification JSON and show toast if enabled
+    fetch('/data/notification.json').then(function(r){
+      if(!r.ok) return;
+      return r.json();
+    }).then(function(cfg){
+      if(!cfg) return;
+      if(cfg.enabled){
+        var toast = document.getElementById('toast');
+        toast.textContent = cfg.message || 'Important update';
+        toast.style.display = 'block';
+        setTimeout(function(){ toast.style.display='none'; }, (cfg.durationSeconds || 6) * 1000);
+      }
+    }).catch(function(e){ /* no notification configured */ });
+  </script>
+</body>
+</html>
